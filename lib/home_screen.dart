@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedItemColor:Colors.black87,
           items: [
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/images/quran.png")),label: "القرأن"),
+                icon: ImageIcon(AssetImage("assets/images/quran.png")),label: "القرأن",),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/sebha.png")),label: "التسبيح"),
             BottomNavigationBarItem(

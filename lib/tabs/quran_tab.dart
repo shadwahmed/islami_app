@@ -1,10 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/sura_details.dart';
+import 'package:islami_app/sura_model.dart';
 
-class QuranTab extends StatelessWidget {
+class QuranTab extends StatefulWidget {
   QuranTab({super.key});
 
+  @override
+  State<QuranTab> createState() => _QuranTabState();
+}
+
+class _QuranTabState extends State<QuranTab> {
   List<String> suraName = [
     "الفاتحه", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال",
     "التوبة", "يونس", "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء",
@@ -21,6 +28,7 @@ class QuranTab extends StatelessWidget {
     "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
     "المسد", "الإخلاص", "الفلق", "الناس"
   ];
+
 List<int>suraNumber=[
   7,286,200,176,120,165,206,75,129,109,123,111,43,52,
   99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60
@@ -30,6 +38,7 @@ List<int>suraNumber=[
   40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,
   8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6
 ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,30 +85,39 @@ List<int>suraNumber=[
                     color: Colors.transparent,
                   ),
                   itemBuilder: (context, index) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          color: Colors.transparent,
-                          child: Text(
-                            '${suraNumber[index]}',
-                            style: GoogleFonts.elMessiri(
-                              color: Colors.black87,
-                              fontSize: 22,
+                    return InkWell(
+                      onTap: (){
+                        Navigator.pushNamed(context, SuraDetails.routeName,
+                        arguments: SuraModel(suraName: suraName[index], index: index));
+                        setState(() {
+
+                        });
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            color: Colors.transparent,
+                            child: Text(
+                              '${suraNumber[index]}',
+                              style: GoogleFonts.elMessiri(
+                                color: Colors.black87,
+                                fontSize: 22,
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          color: Colors.transparent,
-                          child: Text(
-                            '${suraName[index]}',
-                            style: GoogleFonts.elMessiri(
-                              color: Colors.black87,
-                              fontSize: 22,
+                          Container(
+                            color: Colors.transparent,
+                            child: Text(
+                              '${suraName[index]}',
+                              style: GoogleFonts.elMessiri(
+                                color: Colors.black87,
+                                fontSize: 22,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     );
                   },
                   itemCount: suraName.length,
