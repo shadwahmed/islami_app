@@ -47,7 +47,13 @@ class _SebhaTabState extends State<SebhaTab> {
                   child: Image.asset("assets/images/head of seb7a.png")),
               Container(
                   padding: EdgeInsets.only(left: 82, top: 80),
-                  child: Image.asset("assets/images/body of seb7a.png")),
+                  child: InkWell
+                    (
+                      onTap: (){
+                        tasbeha();
+                        setState(() {});
+                      },
+                      child: Image.asset("assets/images/body of seb7a.png"))),
             ],
           ),
           SizedBox(
@@ -100,8 +106,7 @@ class _SebhaTabState extends State<SebhaTab> {
                         borderRadius: BorderRadius.circular(25),
                       )),
                   onPressed: () {
-                    tasbeha();
-                    setState(() {});
+
                   },
                   child: Text(
                     "$tasbehaName",

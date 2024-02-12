@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/sebha.png")),label: "التسبيح"),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/images/radio.png")),label: "الراديو"),
+                icon: ImageIcon(AssetImage("assets/images/radioo.png")),label: "الراديو"),
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/ahadeth.png")),label: "الاحاديث"),
             BottomNavigationBarItem(
