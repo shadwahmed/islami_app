@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/my_provioder.dart';
 
 class RadioTab extends StatelessWidget {
   const RadioTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Column(
@@ -19,12 +23,11 @@ class RadioTab extends StatelessWidget {
             height: 55,
           ),
           Text("إذاعة القرآن الكريم",
-              style: GoogleFonts.elMessiri(
-                  fontSize: 25, fontWeight: FontWeight.w600)),
+              style: Theme.of(context).textTheme.bodyLarge,),
           SizedBox(
             height: 40,
           ),
-          Image.asset("assets/images/radio_pause.png"),
+          Image.asset(provider.getRadioPlayeraPath()),
         ],
       ),
     );

@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../my_theme.dart';
+import '../providers/my_provioder.dart';
 
 class SebhaTab extends StatefulWidget {
   SebhaTab({super.key});
@@ -36,6 +40,7 @@ class _SebhaTabState extends State<SebhaTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Column(
@@ -44,16 +49,15 @@ class _SebhaTabState extends State<SebhaTab> {
             children: [
               Container(
                   padding: EdgeInsets.only(left: 190),
-                  child: Image.asset("assets/images/head of seb7a.png")),
+                  child: Image.asset(provider.getHeadSebhaPath())),
               Container(
                   padding: EdgeInsets.only(left: 82, top: 80),
-                  child: InkWell
-                    (
-                      onTap: (){
+                  child: InkWell(
+                      onTap: () {
                         tasbeha();
                         setState(() {});
                       },
-                      child: Image.asset("assets/images/body of seb7a.png"))),
+                      child: Image.asset(provider.getBodySebhaPath()))),
             ],
           ),
           SizedBox(
@@ -62,8 +66,7 @@ class _SebhaTabState extends State<SebhaTab> {
           Container(
             padding: EdgeInsets.only(left: 70),
             child: Text("عدد التسبيحات",
-                style: GoogleFonts.elMessiri(
-                    fontSize: 25, fontWeight: FontWeight.w600)),
+                style: Theme.of(context).textTheme.bodyLarge),
           ),
           SizedBox(
             height: 20,
@@ -75,7 +78,9 @@ class _SebhaTabState extends State<SebhaTab> {
               width: 75,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffB7935F).withOpacity(0.57),
+                      backgroundColor: provider.themeMode == ThemeMode.light
+                          ? Theme.of(context).primaryColor.withOpacity(0.57)
+                          : MyThemeData.darkBackGround,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25),
                       )),
@@ -83,14 +88,14 @@ class _SebhaTabState extends State<SebhaTab> {
                   child: Text(
                     "$count",
                     style: GoogleFonts.inter(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff242424),
-                    ),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400,
+                        color: provider.themeMode == ThemeMode.light
+                            ? MyThemeData.lightBlack
+                            : MyThemeData.darkWhite),
                   )),
             ),
           ),
-
           SizedBox(
             height: 15,
           ),
@@ -101,19 +106,21 @@ class _SebhaTabState extends State<SebhaTab> {
               width: 160,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffB7935F),
+                      backgroundColor: provider.themeMode == ThemeMode.light
+                      ? Theme.of(context).primaryColor
+                        : Theme.of(context).primaryColorDark,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25),
                       )),
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   child: Text(
                     "$tasbehaName",
                     style: GoogleFonts.inter(
                       fontSize: 25,
                       fontWeight: FontWeight.w400,
-                      color: Colors.white,
+                      color: provider.themeMode == ThemeMode.light
+                          ? MyThemeData.darkWhite
+                          : MyThemeData.lightBlack,
                     ),
                   )),
             ),

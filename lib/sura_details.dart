@@ -2,7 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/providers/my_provioder.dart';
 import 'package:islami_app/sura_model.dart';
+import 'package:provider/provider.dart';
+
+import 'my_theme.dart';
 
 class SuraDetails extends StatefulWidget {
   const SuraDetails({super.key});
@@ -18,6 +22,7 @@ class _SuraDetailsState extends State<SuraDetails> {
   List<String> verses = [];
 
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     var suraModel = ModalRoute.of(context)!.settings.arguments as SuraModel;
     if (verses.isEmpty) {
       loadFile(suraModel.index);
@@ -26,7 +31,7 @@ class _SuraDetailsState extends State<SuraDetails> {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            "assets/images/home-background.png",
+            provider.getBackgroundPath(),
           ),
           fit: BoxFit.fill,
         ),
@@ -37,16 +42,20 @@ class _SuraDetailsState extends State<SuraDetails> {
           title: Text(
             suraModel.suraName,
             style: GoogleFonts.elMessiri(
-              color: Colors.black87,
+              color: provider.themeMode == ThemeMode.light
+                  ? MyThemeData.lightBlack
+                  : MyThemeData.darkWhite,
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: Colors.transparent,
         ),
         backgroundColor: Colors.transparent,
         body: Card(
           margin: EdgeInsets.only(top: 80, bottom: 80, right: 29, left: 29),
+          color: provider.themeMode == ThemeMode.light
+             ? Colors.white
+             : MyThemeData.darkBackGround,
           shape: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25),
             borderSide: BorderSide(color: Colors.transparent)
@@ -59,7 +68,9 @@ class _SuraDetailsState extends State<SuraDetails> {
                   style: GoogleFonts.elMessiri(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
-                      color: Color(0xff242424)),
+                      color: provider.themeMode == ThemeMode.light
+                          ? MyThemeData.lightBlack
+                          : Theme.of(context).primaryColorDark,),
                 );
               },
               separatorBuilder: (context, index) => SizedBox(

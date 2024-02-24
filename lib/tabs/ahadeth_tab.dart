@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami_app/ahadeth_details.dart';
+import 'package:provider/provider.dart';
 
 import '../hadeth_model.dart';
+import '../providers/my_provioder.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class AhadethTab extends StatefulWidget {
   AhadethTab({super.key});
@@ -18,6 +22,8 @@ class _AhadethTabState extends State<AhadethTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
+
     if (model.isEmpty) {
       loadFile();
     }
@@ -27,16 +33,19 @@ class _AhadethTabState extends State<AhadethTab> {
           Center(child: Image.asset("assets/images/ic_ahadeth.png")),
           Divider(
             thickness: 3,
-            color: Color(0xffB7935F),
+            color: provider.themeMode == ThemeMode.light
+                ? Theme.of(context).primaryColor
+                : Theme.of(context).primaryColorDark,
           ),
           Text(
-            "الأحاديث",
-            style: GoogleFonts.elMessiri(
-                fontSize: 25, fontWeight: FontWeight.w600),
+            AppLocalizations.of(context)!.ahadeth_name,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           Divider(
             thickness: 3,
-            color: Color(0xffB7935F),
+            color: provider.themeMode == ThemeMode.light
+                ? Theme.of(context).primaryColor
+                : Theme.of(context).primaryColorDark,
           ),
           Expanded(
             child: ListView.separated(
@@ -55,8 +64,7 @@ class _AhadethTabState extends State<AhadethTab> {
                   child: Text(
                     model[index].topic,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.elMessiri(
-                        fontSize: 25, fontWeight: FontWeight.w600),
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 );
               },

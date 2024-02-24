@@ -2,19 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:islami_app/hadeth_model.dart';
+import 'package:islami_app/providers/my_provioder.dart';
+import 'package:provider/provider.dart';
+
+import 'my_theme.dart';
 
 class AhadethDetails extends StatelessWidget {
   const AhadethDetails({super.key});
   static const String routeName='ahadethDetails';
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
     var ahadethDetails = ModalRoute.of(context)!.settings.arguments as HadethModel;
 
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            "assets/images/home-background.png",
+            provider.getBackgroundPath(),
           ),
           fit: BoxFit.fill,
         ),
@@ -25,7 +30,9 @@ class AhadethDetails extends StatelessWidget {
           title: Text(
             ahadethDetails.topic,
             style: GoogleFonts.elMessiri(
-              color: Colors.black87,
+              color: provider.themeMode == ThemeMode.light
+                  ? MyThemeData.lightBlack
+                  : MyThemeData.darkWhite,
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
@@ -34,6 +41,9 @@ class AhadethDetails extends StatelessWidget {
         ),
         backgroundColor: Colors.transparent,
         body: Card(
+          color: provider.themeMode == ThemeMode.light
+              ? Colors.white
+              : MyThemeData.darkBackGround,
           margin: EdgeInsets.only(top: 80, bottom: 80, right: 29, left: 29),
           shape: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),
@@ -47,7 +57,10 @@ class AhadethDetails extends StatelessWidget {
                   style: GoogleFonts.elMessiri(
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
-                      color: Color(0xff242424)),
+                      color:provider.themeMode == ThemeMode.light
+                          ? MyThemeData.lightBlack
+                          : Theme.of(context).primaryColorDark
+                  ),
                 );
               },
               separatorBuilder: (context, index) => SizedBox(

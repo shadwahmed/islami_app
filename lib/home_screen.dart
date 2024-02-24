@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/providers/my_provioder.dart';
 import 'package:islami_app/tabs/ahadeth_tab.dart';
 import 'package:islami_app/tabs/quran_tab.dart';
 import 'package:islami_app/tabs/radio_tab.dart';
 import 'package:islami_app/tabs/sebha_tab.dart';
 import 'package:islami_app/tabs/setting_tab.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -20,11 +24,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<MyProvider>(context);
+
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            "assets/images/home-background.png",
+          provider.getBackgroundPath(),
           ),
           fit: BoxFit.fill,
         ),
@@ -35,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.transparent,
           centerTitle: true,
           title: Text(
-            "إسلامي",
+            AppLocalizations.of(context)!.app_name,
             style: GoogleFonts.elMessiri(
               fontSize: 30,
               fontWeight: FontWeight.w700,
@@ -43,19 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color(0xffB7935F),
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels:true,
-          showUnselectedLabels: false,
-          iconSize: 40,
           currentIndex: index,
+          iconSize: 40,
           onTap: (value){
             index=value;
             setState(() {
             });
           },
-          unselectedItemColor: Colors.white,
-          selectedItemColor:Colors.black87,
+
           items: [
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage("assets/images/quran.png")),label: "القرأن",),
