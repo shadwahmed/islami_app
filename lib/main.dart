@@ -1,19 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:islami_app/ahadeth_details.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:islami_app/core/theming/my_theme.dart';
 import 'package:islami_app/home_screen.dart';
-import 'package:islami_app/my_theme.dart';
-import 'package:islami_app/providers/my_provioder.dart';
 import 'package:islami_app/splash_screen.dart';
-import 'package:islami_app/sura_details.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'presentation/providers/my_provioder.dart';
+import 'presentation/screens/ahadeth_details.dart';
+import 'presentation/screens/sura_details.dart';
+
 void main() {
-  runApp(ChangeNotifierProvider<MyProvider>
-    ( create: (context)=> MyProvider(),
-      child:  MyApp()));
+  runApp(ChangeNotifierProvider<MyProvider>(
+      create: (context) => MyProvider(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,10 +32,10 @@ class MyApp extends StatelessWidget {
       themeMode: provider.themeMode,
       locale: Locale("${provider.languageCode}"),
       routes: {
-        SplashScreen.routeName: (context)=> SplashScreen(),
-        HomeScreen.routeName: (context)=> HomeScreen(),
-        SuraDetails.routeName: (context)=> SuraDetails(),
-        AhadethDetails.routeName:(context)=>AhadethDetails(),
+        SplashScreen.routeName: (context) => SplashScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
+        SuraDetails.routeName: (context) => SuraDetails(),
+        AhadethDetails.routeName: (context) => AhadethDetails(),
       },
     );
   }

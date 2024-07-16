@@ -3,11 +3,10 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:islami_app/providers/my_provioder.dart';
+import 'package:islami_app/core/theming/my_theme.dart';
 import 'package:provider/provider.dart';
-
 import 'home_screen.dart';
-import 'my_theme.dart';
+import 'presentation/providers/my_provioder.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({super.key});

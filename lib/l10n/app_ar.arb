@@ -4,5 +4,10 @@
   "ayat_numbers": "عدد الآيات",
   "ahadeth_name": "الأحاديث",
   "langauge": "اللغة",
-  "theme": "السمة"
+  "theme": "السمة",
+  "quran": "القرأن",
+  "sebha": "التسبيح",
+  "radio": "الراديو",
+  "ahadeth": "الاحاديث",
+  "setting": "الاعدادت"
 }

@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/core/theming/my_theme.dart';
+import 'package:islami_app/core/widgets/bottom_sheets/Theme_bottom_sheet.dart';
+import 'package:islami_app/core/widgets/bottom_sheets/language_bottom_sheet.dart';
 import 'package:provider/provider.dart';
-
-import '../bottom_sheets/Theme_bottom_sheet.dart';
-import '../bottom_sheets/language_bottom_sheet.dart';
-import '../my_theme.dart';
 import '../providers/my_provioder.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SettingTab extends StatelessWidget {
   SettingTab({super.key});
@@ -26,7 +25,7 @@ class SettingTab extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 18),
             child: Text(
-                AppLocalizations.of(context)!.langauge,
+              AppLocalizations.of(context)!.langauge,
               style: GoogleFonts.alike(
                   fontWeight: FontWeight.w700,
                   fontSize: 28,
@@ -52,12 +51,13 @@ class SettingTab extends StatelessWidget {
                 width: 350,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color:provider.themeMode == ThemeMode.light
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColorDark),
+                  border: Border.all(
+                      color: provider.themeMode == ThemeMode.light
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).primaryColorDark),
                 ),
                 child: Text(
-                  "  Arabic",
+                  provider.languageCode == 'en' ? "English" : "Arabic",
                   style: GoogleFonts.alike(
                       fontWeight: FontWeight.w300,
                       fontSize: 25,
@@ -76,12 +76,11 @@ class SettingTab extends StatelessWidget {
             child: Text(
               AppLocalizations.of(context)!.theme,
               style: GoogleFonts.alike(
-                fontWeight: FontWeight.w700,
-                fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 28,
                   color: provider.themeMode == ThemeMode.light
                       ? MyThemeData.lightBlack
-                      : MyThemeData.darkWhite
-              ),
+                      : MyThemeData.darkWhite),
             ),
           ),
           SizedBox(
@@ -101,19 +100,19 @@ class SettingTab extends StatelessWidget {
                 width: 350,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: provider.themeMode == ThemeMode.light
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColorDark),
+                  border: Border.all(
+                      color: provider.themeMode == ThemeMode.light
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).primaryColorDark),
                 ),
                 child: Text(
-                  "  Light",
+                  provider.themeMode == ThemeMode.light ? "Light" : "Dark",
                   style: GoogleFonts.alike(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 25,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 25,
                       color: provider.themeMode == ThemeMode.light
                           ? MyThemeData.lightBlack
-                          : MyThemeData.darkWhite
-                  ),
+                          : MyThemeData.darkWhite),
                 ),
               ),
             ),

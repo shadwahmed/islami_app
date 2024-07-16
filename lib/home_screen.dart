@@ -1,18 +1,21 @@
-import 'package:flutter/cupertino.dart';
+ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:islami_app/providers/my_provioder.dart';
-import 'package:islami_app/tabs/ahadeth_tab.dart';
-import 'package:islami_app/tabs/quran_tab.dart';
-import 'package:islami_app/tabs/radio_tab.dart';
-import 'package:islami_app/tabs/sebha_tab.dart';
-import 'package:islami_app/tabs/setting_tab.dart';
+import 'package:islami_app/presentation/tabs/ahadeth_tab.dart';
+import 'package:islami_app/presentation/tabs/quran_tab.dart';
+import 'package:islami_app/presentation/tabs/radio_tab.dart';
+import 'package:islami_app/presentation/tabs/sebha_tab.dart';
+import 'package:islami_app/presentation/tabs/setting_tab.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+ import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'presentation/providers/my_provioder.dart';
 
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
   static const String routeName = "HomeScreen";
 
   @override
@@ -20,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int index=0;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-          provider.getBackgroundPath(),
+            provider.getBackgroundPath(),
           ),
           fit: BoxFit.fill,
         ),
@@ -51,23 +54,27 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: index,
           iconSize: 40,
-          onTap: (value){
-            index=value;
-            setState(() {
-            });
+          onTap: (value) {
+            index = value;
+            setState(() {});
           },
-
           items: [
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/images/quran.png")),label: "القرأن",),
+              icon: ImageIcon(AssetImage("assets/images/quran.png")),
+              label: AppLocalizations.of(context)!.quran,
+            ),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/images/sebha.png")),label: "التسبيح"),
+                icon: ImageIcon(AssetImage("assets/images/sebha.png")),
+                label: AppLocalizations.of(context)!.sebha),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/images/radioo.png")),label: "الراديو"),
+                icon: ImageIcon(AssetImage("assets/images/radioo.png")),
+                label: AppLocalizations.of(context)!.radio),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage("assets/images/ahadeth.png")),label: "الاحاديث"),
+                icon: ImageIcon(AssetImage("assets/images/ahadeth.png")),
+                label: AppLocalizations.of(context)!.ahadeth),
             BottomNavigationBarItem(
-                icon:Icon(Icons.settings),label: "الاعدادات" ),
+                icon: Icon(Icons.settings),
+                label: AppLocalizations.of(context)!.setting),
           ],
         ),
         body: tabs[index],
@@ -75,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-List<Widget>tabs=[
+
+List<Widget> tabs = [
   QuranTab(),
   SebhaTab(),
   RadioTab(),

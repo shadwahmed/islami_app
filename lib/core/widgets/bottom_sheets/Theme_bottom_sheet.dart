@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/presentation/providers/my_provioder.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/my_provioder.dart';
 
 class ThemeBottoumSheet extends StatelessWidget {
   const ThemeBottoumSheet({super.key});
@@ -32,7 +32,7 @@ class ThemeBottoumSheet extends StatelessWidget {
                   fontWeight: FontWeight.w300,
                   color: provider.themeMode == ThemeMode.light
                       ? Theme.of(context).primaryColor
-                      : Colors.red,
+                      :Colors.blueAccent,
                 ),
               ),
             ),

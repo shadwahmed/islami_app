@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:islami_app/presentation/providers/my_provioder.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/my_provioder.dart';
 
 class LanguageBottoumSheet extends StatelessWidget {
   const LanguageBottoumSheet({super.key});
@@ -28,16 +28,17 @@ class LanguageBottoumSheet extends StatelessWidget {
                 style: GoogleFonts.elMessiri(
                   fontSize: 30,
                   fontWeight: FontWeight.w300,
-                  color: provider.languageCode =='ar'&& provider.themeMode==ThemeMode.light
+                  color: provider.languageCode == 'ar' &&
+                          provider.themeMode == ThemeMode.light
                       ? Theme.of(context).primaryColor
                       : Colors.blueAccent,
                 ),
               ),
             ),
-            if (provider.languageCode =='ar'&& provider.themeMode==ThemeMode.light) ...[
+            if (provider.languageCode == 'ar') ...[
               Icon(
                 Icons.done,
-                color: Theme.of(context).primaryColor,
+                color: Colors.blueAccent,
                 size: 35,
               )
             ]
@@ -55,13 +56,14 @@ class LanguageBottoumSheet extends StatelessWidget {
                 style: GoogleFonts.elMessiri(
                   fontSize: 30,
                   fontWeight: FontWeight.w300,
-                  color: provider.languageCode == 'en'&& provider.themeMode==ThemeMode.dark
+                  color: provider.languageCode == 'en' &&
+                          provider.themeMode == ThemeMode.dark
                       ? Theme.of(context).primaryColorDark
                       : Colors.red,
                 ),
               ),
             ),
-            if (provider.languageCode =='en'&& provider.themeMode==ThemeMode.dark) ...[
+            if (provider.languageCode == 'en') ...[
               Icon(
                 Icons.done,
                 color: Theme.of(context).primaryColorDark,

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:islami_app/hadeth_model.dart';
-import 'package:islami_app/providers/my_provioder.dart';
+import 'package:islami_app/core/theming/my_theme.dart';
+import 'package:islami_app/data/models/hadeth_model.dart';
+import 'package:islami_app/presentation/providers/my_provioder.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'my_theme.dart';
 
 class AhadethDetails extends StatelessWidget {
   const AhadethDetails({super.key});

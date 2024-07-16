@@ -1,8 +1,13 @@
 {
   "app_name": "ISLAMI",
   "sura_name": "Sura Name",
-  "ayat_numbers": "Number of verses",
+  "ayat_numbers": "No of verses",
   "ahadeth_name": "Ahadeth",
   "langauge": "Language",
-  "theme": "Theme"
+  "theme": "Theme",
+  "quran": "Quran",
+  "sebha": "Sebha",
+  "radio": "Radio",
+  "ahadeth": "Ahadeth",
+  "setting": "Setting"
 }

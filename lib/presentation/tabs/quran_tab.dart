@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:islami_app/sura_details.dart';
-import 'package:islami_app/sura_model.dart';
+import 'package:islami_app/core/theming/my_theme.dart';
+import 'package:islami_app/data/models/sura_model.dart';
+import 'package:islami_app/presentation/screens/sura_details.dart';
 import 'package:provider/provider.dart';
-
-import '../my_theme.dart';
 import '../providers/my_provioder.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 class QuranTab extends StatefulWidget {
   QuranTab({super.key});
@@ -284,11 +283,11 @@ class _QuranTabState extends State<QuranTab> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    'عدد الآيات',
+                AppLocalizations.of(context)!.ayat_numbers,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   Text(
-                    "اسم السورة",
+                  AppLocalizations.of(context)!.sura_name,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],
